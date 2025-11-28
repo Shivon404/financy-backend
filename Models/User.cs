@@ -10,6 +10,7 @@ namespace FinancyAPI.Models
         public string? StudentId { get; set; }
         public decimal MonthlyAllowance { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string Role { get; set; }
         
         public string FullName => $"{FirstName} {LastName}";
     }

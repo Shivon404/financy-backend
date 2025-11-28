@@ -35,6 +35,7 @@ namespace FinancyAPI.Controllers
                             user.Email,
                             user.StudentId,
                             user.MonthlyAllowance,
+                            user.Role,
                             user.FullName
                         }
                     });

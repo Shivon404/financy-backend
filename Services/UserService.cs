@@ -38,6 +38,7 @@ namespace FinancyAPI.Services
                                 StudentId = reader.IsDBNull(reader.GetOrdinal("student_id")) ? null : reader.GetString("student_id"),
                                 MonthlyAllowance = reader.GetDecimal("monthly_allowance"),
                                 CreatedAt = reader.GetDateTime("created_at")
+                                Role = reader.GetString("role")   // 👈 ADDED!
                             };
                         }
                     }
@@ -121,6 +122,74 @@ namespace FinancyAPI.Services
                     cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.Parameters.AddWithValue("@allowance", newAllowance);
                     
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+        public List<User> GetAllUsers()
+        {
+            var users = new List<User>();
+            using (var conn = _dbService.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM users";
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new User
+                        {
+                            UserId = reader.GetInt32("user_id"),
+                            FirstName = reader.GetString("first_name"),
+                            LastName = reader.GetString("last_name"),
+                            Email = reader.GetString("email"),
+                            StudentId = reader.IsDBNull(reader.GetOrdinal("student_id")) ? null : reader.GetString("student_id"),
+                            MonthlyAllowance = reader.GetDecimal("monthly_allowance"),
+                            CreatedAt = reader.GetDateTime("created_at")
+                        });
+                    }
+                }
+            }
+            return users;
+        }
+
+        public bool UpdateUser(int userId, UpdateUserRequest request)
+        {
+            using (var conn = _dbService.GetConnection())
+            {
+                conn.Open();
+                string query = @"UPDATE users 
+                SET first_name=@firstName, last_name=@lastName, email=@email" +
+                (string.IsNullOrEmpty(request.Password) ? "" : ", password=@password") +
+                " WHERE user_id=@userId";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@firstName", request.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", request.LastName);
+                    cmd.Parameters.AddWithValue("@email", request.Email);
+
+                    if (!string.IsNullOrEmpty(request.Password))
+                    cmd.Parameters.AddWithValue("@password", request.Password);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+        public bool ToggleUserStatus(int userId)
+        {
+            using (var conn = _dbService.GetConnection())
+            {
+                conn.Open();
+
+                string query = "UPDATE users SET status = IF(status='active','inactive','active') WHERE user_id=@userId";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
