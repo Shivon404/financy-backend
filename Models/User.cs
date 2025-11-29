@@ -11,6 +11,11 @@ namespace FinancyAPI.Models
         public decimal MonthlyAllowance { get; set; }
         public DateTime CreatedAt { get; set; }
         
+        
         public string FullName => $"{FirstName} {LastName}";
+
+        //for admin, checks its email
+
+        public bool IsAdmin => Email?.EndsWith("@admin.com") ?? false;
     }
 }

@@ -27,6 +27,7 @@ namespace FinancyAPI.Controllers
                     {
                         success = true,
                         message = "Login successful!",
+                        isAdmin = user.IsAdmin,
                         user = new
                         {
                             user.UserId,
@@ -35,10 +36,12 @@ namespace FinancyAPI.Controllers
                             user.Email,
                             user.StudentId,
                             user.MonthlyAllowance,
-                            user.FullName
+                            user.FullName,
+                            user.IsAdmin
                         }
                     });
                 }
+
                 return Ok(new { success = false, message = "Invalid email or password" });
             }
             catch (Exception ex)
@@ -53,6 +56,7 @@ namespace FinancyAPI.Controllers
             try
             {
                 bool success = _userService.Register(request);
+
                 if (success)
                 {
                     return Ok(new
@@ -61,6 +65,7 @@ namespace FinancyAPI.Controllers
                         message = "Registration successful! You can now login."
                     });
                 }
+
                 return Ok(new { success = false, message = "Email already exists!" });
             }
             catch (Exception ex)
@@ -68,12 +73,14 @@ namespace FinancyAPI.Controllers
                 return StatusCode(500, new { success = false, message = ex.Message });
             }
         }
+
         [HttpPut("update-allowance")]
         public IActionResult UpdateAllowance([FromBody] UpdateAllowanceRequest request)
         {
             try
             {
                 bool success = _userService.UpdateMonthlyAllowance(request.UserId, request.MonthlyAllowance);
+
                 if (success)
                 {
                     return Ok(new
@@ -82,7 +89,70 @@ namespace FinancyAPI.Controllers
                         message = "Monthly allowance updated successfully!"
                     });
                 }
+
                 return Ok(new { success = false, message = "Failed to update allowance" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpPut("update-profile")]
+        public IActionResult UpdateProfile([FromBody] UpdateProfileRequest request)
+        {
+            try
+            {
+                bool success = _userService.UpdateUserProfile(
+                    request.UserId,
+                    request.FirstName,
+                    request.LastName,
+                    request.StudentId
+                );
+
+                if (success)
+                {
+                    var updatedUser = _userService.GetUserById(request.UserId);
+
+                    return Ok(new
+                    {
+                        success = true,
+                        message = "Profile updated successfully!",
+                        user = new
+                        {
+                            updatedUser.UserId,
+                            updatedUser.FirstName,
+                            updatedUser.LastName,
+                            updatedUser.Email,
+                            updatedUser.StudentId,
+                            updatedUser.MonthlyAllowance,
+                            updatedUser.FullName,
+                            updatedUser.IsAdmin
+                        }
+                    });
+                }
+
+                return Ok(new { success = false, message = "Failed to update profile" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpDelete("delete-account/{userId}")]
+        public IActionResult DeleteAccount(int userId)
+        {
+            try
+            {
+                bool success = _userService.DeleteUser(userId);
+
+                if (success)
+                {
+                    return Ok(new { success = true, message = "Account deleted successfully" });
+                }
+
+                return Ok(new { success = false, message = "Failed to delete account" });
             }
             catch (Exception ex)
             {
@@ -91,10 +161,17 @@ namespace FinancyAPI.Controllers
         }
     }
 
+    public class UpdateProfileRequest
+    {
+        public int UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string? StudentId { get; set; }
+    }
+
     public class UpdateAllowanceRequest
     {
         public int UserId { get; set; }
         public decimal MonthlyAllowance { get; set; }
-    
     }
 }
