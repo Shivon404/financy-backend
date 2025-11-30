@@ -159,6 +159,107 @@ namespace FinancyAPI.Controllers
                 return StatusCode(500, new { success = false, message = ex.Message });
             }
         }
+
+        [HttpPut("admin-update-user")]
+        public IActionResult AdminUpdateUser([FromBody] AdminUpdateUserRequest request)
+        {
+            try
+            {
+                bool success = _userService.AdminUpdateUser(
+                    request.UserId,
+                    request.Email,
+                    request.FirstName,
+                    request.LastName,
+                    request.StudentId,
+                    request.MonthlyAllowance,
+                    request.Status,
+                    request.Password
+                );
+
+                if (success)
+                {
+                    return Ok(new { success = true, message = "User updated successfully!" });
+                }
+
+                return Ok(new { success = false, message = "Failed to update user" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpPut("toggle-user-status")]
+        public IActionResult ToggleUserStatus([FromBody] ToggleStatusRequest request)
+        {
+            try
+            {
+                bool success = _userService.ToggleUserStatus(request.UserId, request.Status);
+
+                if (success)
+                {
+                    return Ok(new { success = true, message = "User status updated successfully!" });
+                }
+
+                return Ok(new { success = false, message = "Failed to update status" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpDelete("admin-delete-user/{userId}")]
+        public IActionResult AdminDeleteUser(int userId)
+        {
+            try
+            {
+                bool success = _userService.AdminDeleteUser(userId);
+
+                if (success)
+                {
+                    return Ok(new { success = true, message = "User deleted successfully" });
+                }
+
+                return Ok(new { success = false, message = "Failed to delete user" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpGet("user-statistics/{userId}")]
+        public IActionResult GetUserStatistics(int userId)
+        {
+            try
+            {
+                var stats = _userService.GetUserStatistics(userId);
+                return Ok(new { success = true, stats });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+    }
+
+    public class AdminUpdateUserRequest
+    {
+        public int UserId { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string? StudentId { get; set; }
+        public decimal MonthlyAllowance { get; set; }
+        public string Status { get; set; }
+        public string? Password { get; set; }
+    }
+
+    public class ToggleStatusRequest
+    {
+        public int UserId { get; set; }
+        public string Status { get; set; }
     }
 
     public class UpdateProfileRequest

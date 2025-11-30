@@ -9,13 +9,10 @@ namespace FinancyAPI.Models
         public string Password { get; set; }
         public string? StudentId { get; set; }
         public decimal MonthlyAllowance { get; set; }
+        public string Status { get; set; } = "Active"; // NEW
         public DateTime CreatedAt { get; set; }
         
-        
         public string FullName => $"{FirstName} {LastName}";
-
-        //for admin, checks its email
-
         public bool IsAdmin => Email?.EndsWith("@admin.com") ?? false;
     }
 }

@@ -585,19 +585,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\siobh\\.nuget\\packages\\": {}
+    "C:\\Users\\jobta\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\siobh\\Desktop\\FinancyAPI\\FinancyAPI.csproj",
+      "projectUniqueName": "C:\\Users\\jobta\\Desktop\\financy-backend\\FinancyAPI.csproj",
       "projectName": "FinancyAPI",
-      "projectPath": "C:\\Users\\siobh\\Desktop\\FinancyAPI\\FinancyAPI.csproj",
-      "packagesPath": "C:\\Users\\siobh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\siobh\\Desktop\\FinancyAPI\\obj\\",
+      "projectPath": "C:\\Users\\jobta\\Desktop\\financy-backend\\FinancyAPI.csproj",
+      "packagesPath": "C:\\Users\\jobta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jobta\\Desktop\\financy-backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\siobh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jobta\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
