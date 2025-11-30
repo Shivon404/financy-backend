@@ -1,3 +1,4 @@
+// Program.cs
 using FinancyAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ builder.Services.AddSingleton<DatabaseService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ExpenseService>();
 builder.Services.AddScoped<BudgetService>();
+
+// CORRECT: register CategoryService (no ".cs")
+builder.Services.AddScoped<CategoryService>();
 
 // Add CORS
 builder.Services.AddCors(options =>

@@ -585,19 +585,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jobta\\.nuget\\packages\\": {}
+    "C:\\Users\\geose\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jobta\\Desktop\\financy-backend\\FinancyAPI.csproj",
+      "projectUniqueName": "C:\\Users\\geose\\OneDrive\\Desktop\\FinancyAPI\\FinancyAPI.csproj",
       "projectName": "FinancyAPI",
-      "projectPath": "C:\\Users\\jobta\\Desktop\\financy-backend\\FinancyAPI.csproj",
-      "packagesPath": "C:\\Users\\jobta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jobta\\Desktop\\financy-backend\\obj\\",
+      "projectPath": "C:\\Users\\geose\\OneDrive\\Desktop\\FinancyAPI\\FinancyAPI.csproj",
+      "packagesPath": "C:\\Users\\geose\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\geose\\OneDrive\\Desktop\\FinancyAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jobta\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\geose\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
