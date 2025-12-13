@@ -48,6 +48,7 @@ C:\Users\siobh\Desktop\FinancyAPI\obj\Debug\net10.0\refint\FinancyAPI.dll
 C:\Users\siobh\Desktop\FinancyAPI\obj\Debug\net10.0\FinancyAPI.pdb
 C:\Users\siobh\Desktop\FinancyAPI\obj\Debug\net10.0\FinancyAPI.genruntimeconfig.cache
 C:\Users\siobh\Desktop\FinancyAPI\obj\Debug\net10.0\ref\FinancyAPI.dll
+C:\Users\siobh\Desktop\FinancyAPI\obj\Debug\net10.0\FinancyAPI.sourcelink.json
 C:\Users\jobta\Desktop\financy-backend\bin\Debug\net10.0\appsettings.Development.json
 C:\Users\jobta\Desktop\financy-backend\bin\Debug\net10.0\appsettings.json
 C:\Users\jobta\Desktop\financy-backend\bin\Debug\net10.0\FinancyAPI.staticwebassets.endpoints.json
@@ -150,4 +151,3 @@ C:\Users\geose\OneDrive\Desktop\FinancyAPI\obj\Debug\net10.0\refint\FinancyAPI.d
 C:\Users\geose\OneDrive\Desktop\FinancyAPI\obj\Debug\net10.0\FinancyAPI.pdb
 C:\Users\geose\OneDrive\Desktop\FinancyAPI\obj\Debug\net10.0\FinancyAPI.genruntimeconfig.cache
 C:\Users\geose\OneDrive\Desktop\FinancyAPI\obj\Debug\net10.0\ref\FinancyAPI.dll
-C:\Users\siobh\Desktop\FinancyAPI\obj\Debug\net10.0\FinancyAPI.sourcelink.json
